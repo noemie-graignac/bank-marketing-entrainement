@@ -22,6 +22,7 @@ def build_features(df):
         bins=[17, 29, 45, 60, 100],
         labels=["18-29", "30-45", "46-60", "61+"],
     ).astype(str)
+    features["contact_inconnu"] = (df["contact"] == "unknown").astype(int)
     return features
 
 def build_target(df):

@@ -33,5 +33,8 @@ def test_campaign_trop_elevee(df):
 
     casse.loc[0, "campaign"] = 150
 
+def test_pdays_trop_grand(df):
+    casse = df.copy()
+    casse.loc[0, "pdays"] = 5000
     with pytest.raises(pa.errors.SchemaErrors):
         validate_bank_data(casse)
