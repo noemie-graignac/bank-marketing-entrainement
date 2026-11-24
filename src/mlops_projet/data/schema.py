@@ -27,6 +27,7 @@ bank_schema = pa.DataFrameSchema(
  "previous": pa.Column(int, pa.Check.ge(0)),
  "poutcome": pa.Column(str, pa.Check.isin(["success", "failure", "other", "unknown"])),
  "y": pa.Column(str, pa.Check.isin(OUI_NON)),
+ "pdays": pa.Column(int, pa.Check.in_range(-1, 900)),
  },
  strict=True, # aucune colonne en plus, aucune en moins
 )

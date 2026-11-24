@@ -25,3 +25,9 @@ def test_meme_calcul_entrainement_et_prediction():
     client = df.iloc[0].drop(["duration", "y"]).to_dict()
     prediction = build_features(pd.DataFrame([client]))
     pd.testing.assert_frame_equal(entrainement, prediction)
+
+def test_contact_inconnu():
+    df = load_bank_data()
+    feats = build_features(df)
+    assert set(feats["contact_inconnu"].unique()) <= {0, 1}
+    assert (feats["contact_inconnu"] == (df["contact"] == "unknown")).all()
