@@ -26,6 +26,21 @@ def test_meme_calcul_entrainement_et_prediction():
     prediction = build_features(pd.DataFrame([client]))
     pd.testing.assert_frame_equal(entrainement, prediction)
 
+def test_deux_prets():
+    df = pd.DataFrame({
+        "housing": ["yes", "yes", "no", "no"],
+        "loan": ["yes", "no", "yes", "no"],
+        "pdays": [-1, -1, -1, -1],
+        "balance": [100, 200, 300, 400],
+        "campaign": [1, 1, 1, 1],
+        "previous": [0, 0, 0, 0],
+        "age": [25, 35, 45, 55]
+    })
+
+    features = build_features(df)
+
+    assert features["deux_prets"].tolist() == [1, 0, 0, 0]
+
 def test_contact_inconnu():
     df = load_bank_data()
     feats = build_features(df)

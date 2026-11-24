@@ -28,6 +28,11 @@ def test_cible_inconnue(df):
     with pytest.raises(pa.errors.SchemaErrors):
         validate_bank_data(casse)
 
+def test_campaign_trop_elevee(df):
+    casse = df.copy()
+
+    casse.loc[0, "campaign"] = 150
+
 def test_pdays_trop_grand(df):
     casse = df.copy()
     casse.loc[0, "pdays"] = 5000

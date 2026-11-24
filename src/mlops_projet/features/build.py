@@ -13,6 +13,10 @@ def build_features(df):
     features["deja_contacte"] = (df["pdays"] != -1).astype(int)
     features["solde_negatif"] = (df["balance"] < 0).astype(int)
     features["nb_contacts_total"] = df["campaign"] + df["previous"]
+    features["deux_prets"] = (
+    (df["housing"] == "yes") &
+    (df["loan"] == "yes")
+    ).astype(int)
     features["tranche_age"] = pd.cut(
         df["age"],
         bins=[17, 29, 45, 60, 100],
